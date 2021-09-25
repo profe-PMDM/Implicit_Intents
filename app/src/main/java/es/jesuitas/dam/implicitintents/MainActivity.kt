@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.btn_web -> openWeb("https://www.jesuitasrioja.org")
             R.id.btn_websearch -> searchWeb("Jesuitas Rioja")
-            R.id.btn_map -> openMap()
+            R.id.btn_map -> openMap("Duques de Nájera 19, Logroño")
             R.id.btn_mail -> sendMail()
             R.id.btn_phone -> phoneCall()
         }
@@ -40,8 +40,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun openMap() {
-        Toast.makeText(this,R.string.map,Toast.LENGTH_LONG).show()
+    private fun openMap(address: String) {
+        val addressUri: Uri = Uri.parse("geo:0,0?q=$address")
+        val intent = Intent(Intent.ACTION_VIEW, addressUri)
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
+
     }
 
     private fun searchWeb(query: String) {
