@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_web -> openWeb("https://www.jesuitasrioja.org")
             R.id.btn_websearch -> searchWeb("Jesuitas Rioja")
             R.id.btn_map -> openMap("Duques de Nájera 19, Logroño")
-            R.id.btn_mail -> sendMail()
+            R.id.btn_mail -> sendMail("csc@jesuitasrioja.org")
             R.id.btn_phone -> phoneCall()
         }
     }
@@ -35,9 +35,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Toast.makeText(this, "Phone",Toast.LENGTH_LONG).show()
     }
 
-    private fun sendMail() {
-        Toast.makeText(this,R.string.mail,Toast.LENGTH_LONG).show()
-
+    private fun sendMail(email: String) {
+        val emails: Array<String> = arrayOf(email)
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, emails)
+            putExtra(Intent.EXTRA_SUBJECT, "Asunto de Prueba")
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
     }
 
     private fun openMap(address: String) {
