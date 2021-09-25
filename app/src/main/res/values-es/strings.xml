@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Implicit Intents</string>
+    <string name="web_search">Búsqueda Web</string>
+    <string name="web">Página Web</string>
+    <string name="map">Ubicación</string>
+    <string name="mail">Enviar correo</string>
+    <string name="phone">Llamar</string>
+</resources>
