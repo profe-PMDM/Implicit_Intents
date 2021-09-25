@@ -27,12 +27,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_websearch -> searchWeb("Jesuitas Rioja")
             R.id.btn_map -> openMap("Duques de Nájera 19, Logroño")
             R.id.btn_mail -> sendMail("csc@jesuitasrioja.org")
-            R.id.btn_phone -> phoneCall()
+            R.id.btn_phone -> phoneCall("941221700")
         }
     }
 
-    private fun phoneCall() {
-        Toast.makeText(this, "Phone",Toast.LENGTH_LONG).show()
+    private fun phoneCall(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:$phoneNumber")
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
     }
 
     private fun sendMail(email: String) {
