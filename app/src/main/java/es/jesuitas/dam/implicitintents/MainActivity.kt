@@ -1,5 +1,6 @@
 package es.jesuitas.dam.implicitintents
 
+import android.app.SearchManager
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_web -> openWeb("https://www.jesuitasrioja.org")
-            R.id.btn_websearch -> searchWeb()
+            R.id.btn_websearch -> searchWeb("Jesuitas Rioja")
             R.id.btn_map -> openMap()
             R.id.btn_mail -> sendMail()
             R.id.btn_phone -> phoneCall()
@@ -43,8 +44,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Toast.makeText(this,R.string.map,Toast.LENGTH_LONG).show()
     }
 
-    private fun searchWeb() {
-        Toast.makeText(this,R.string.web_search,Toast.LENGTH_LONG).show()
+    private fun searchWeb(query: String) {
+        val intent = Intent(Intent.ACTION_WEB_SEARCH).apply {
+            putExtra(SearchManager.QUERY, query)
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
     }
 
     private fun openWeb(url: String) {
