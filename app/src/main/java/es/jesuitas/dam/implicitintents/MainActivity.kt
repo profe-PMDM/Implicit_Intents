@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    // https://developer.android.com/guide/components/intents-common?hl=en#Phone
     private fun phoneCall(phoneNumber: String) {
         val intent = Intent(Intent.ACTION_DIAL).apply {
             data = Uri.parse("tel:$phoneNumber")
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    // https://developer.android.com/guide/components/intents-common?hl=en#Email
     private fun sendMail(email: String) {
         val emails: Array<String> = arrayOf(email)
         val intent = Intent(Intent.ACTION_SENDTO).apply {
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    // https://developer.android.com/guide/components/intents-common?hl=en#Maps
     private fun openMap(address: String) {
         val addressUri: Uri = Uri.parse("geo:0,0?q=$address")
         val intent = Intent(Intent.ACTION_VIEW, addressUri)
@@ -61,6 +64,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    // https://developer.android.com/guide/components/intents-common?hl=en#SearchWeb
     private fun searchWeb(query: String) {
         val intent = Intent(Intent.ACTION_WEB_SEARCH).apply {
             putExtra(SearchManager.QUERY, query)
@@ -70,6 +74,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    // https://developer.android.com/guide/components/intents-common?hl=en#Browser
     private fun openWeb(url: String) {
         val webpage: Uri = Uri.parse(url)
         val intent = Intent(Intent.ACTION_VIEW, webpage)
